@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-import { Input } from "@chakra-ui/react";
+import { Input, Center } from "@chakra-ui/react";
+import '../styles/login.scss'
 
 function Login() {
     const [ email, setEmail ] = useState('');
@@ -39,25 +40,30 @@ function Login() {
     }
 
     return (
-        <div>
+        <>
+        <div className='login'>
             {/* is loggedIn === true --> redirect */}
             {isLoggedIn === true ? 
                 <Redirect to="/main" /> : 
                 <h1>Log in</h1>
             }
+
+            {/* is loggedIn === true --> redirect */}
             <form onSubmit={handleSubmit}>
-                <label>Email:
-                    <Input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
+                <label className='label email'>Email:
+                    <Input className='input' type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
                 </label>
-                <label>Password:
-                    <Input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
+                <label className='label'>Password:
+                    <Input className='input' type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
                 </label>
-                <Input type="submit" value="Sign In">
+                <Input className='submit' type="submit" value="Sign In">
                 </Input>
             </form>
-            <Link to="/signup">Sign Up</Link>
-            <p>{errorMsg}</p>
+            <Link to="/signup" className='signUpLink'>Sign Up</Link>
         </div>
+        <p>{errorMsg}</p>
+        </>
+       
     )
 }
 

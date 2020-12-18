@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Input } from "@chakra-ui/react";
 import { Link, Redirect } from 'react-router-dom';
+import { Input } from "@chakra-ui/react";
+import '../styles/login.scss'
 // import inputs like in login page
 
 function SignUp() {
@@ -39,25 +40,25 @@ function SignUp() {
     }
 
     return (
-        <div>
+        <div className='signUp'>
             {/* is loggedIn === true --> redirect */}
             {isLoggedIn === true ? 
                 <Redirect to="/main" /> : 
                 <h1>Create account</h1>
             }
             <form onSubmit={handleSubmit}>
-                <label>Email:
-                    <Input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
+                <label className='label email'>Email:
+                    <Input className='input' type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
                 </label>
-                <label>Password:
-                    <Input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
+                <label className='label'>Password:
+                    <Input  className='input' type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
                 </label>
-                <Input type="submit" value="Sign Up">
-
-                </Input>
+                <Input className='submit' type="submit" value="Sign Up" />
             </form>
+            <Link to="/" className='loginLink'>Login</Link>
             <p>{errorMsg}</p>
         </div>
+       
     )
 }
 
